@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.0.1 (Python 3.12.3 on darwin)" generated="2024-07-02T17:07:16.229244" rpa="false" schemaversion="5">
+<suite id="s1" name="Tests" source="/usr/local/.app/WS/jwt/tests">
+<suite id="s1-s1" name="Jwt Tests" source="/usr/local/.app/WS/jwt/tests/jwt_tests.robot">
+<test id="s1-s1-t1" name="Caso1: Valid JWT With Correct Claims" line="7">
+<kw name="Verify Jwt" owner="jwt_verifier">
+<msg time="2024-07-02T17:07:16.325909" level="INFO">eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJTZWVkIjoiNzg0MSIsIk5hbWUiOiJUb25pbmhvIEFyYXVqbyJ9.QY05sIjtrcJnP533kQNk8QXcaleJ1Q01jWY_ZzIZuAg
+{'Role': 'Admin', 'Seed': '7841', 'Name': 'Toninho Araujo'}</msg>
+<msg time="2024-07-02T17:07:16.326078" level="INFO">${result} = True</msg>
+<var>${result}</var>
+<arg>${VALID_JWT}</arg>
+<status status="PASS" start="2024-07-02T17:07:16.324029" elapsed="0.002089"/>
+</kw>
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${result}</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2024-07-02T17:07:16.326403" elapsed="0.000457"/>
+</kw>
+<tag>Caso1</tag>
+<status status="PASS" start="2024-07-02T17:07:16.322168" elapsed="0.004936"/>
+</test>
+<test id="s1-s1-t2" name="Caso2: Invalid JWT Missing Claim" line="12">
+<kw name="Verify Jwt" owner="jwt_verifier">
+<msg time="2024-07-02T17:07:16.328065" level="INFO">eyJhbGciOiJIUzI1NiJ9.eyJTZWVkIjoiNzg0MSIsIk5hbWUiOiJUb25pbmhvIEFyYXVqbyJ9.GeH_kHSsRrmTY2MQI0v_NccrkBBLxwX6NJA1P2nKEeA
+{'Seed': '7841', 'Name': 'Toninho Araujo'}</msg>
+<msg time="2024-07-02T17:07:16.328159" level="INFO">${result} = False</msg>
+<var>${result}</var>
+<arg>${INVALID_JWT_MISSING_CLAIM}</arg>
+<status status="PASS" start="2024-07-02T17:07:16.327806" elapsed="0.000379"/>
+</kw>
+<kw name="Should Not Be True" owner="BuiltIn">
+<arg>${result}</arg>
+<doc>Fails if the given condition is true.</doc>
+<status status="PASS" start="2024-07-02T17:07:16.328345" elapsed="0.000173"/>
+</kw>
+<tag>Caso2</tag>
+<status status="PASS" start="2024-07-02T17:07:16.327411" elapsed="0.001256"/>
+</test>
+<test id="s1-s1-t3" name="Caso3: Invalid JWT With Extra Claim" line="17">
+<kw name="Verify Jwt" owner="jwt_verifier">
+<msg time="2024-07-02T17:07:16.329402" level="INFO">eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiTWVtYmVyIiwiT3JnIjoiQlIiLCJTZWVkIjoiMTQ2MjciLCJOYW1lIjoiVmFsZGlyIEFyYW5oYSJ9.cmrXV_Flm5mfdpfNUVopY_I2zeJUy4EZ4i3Fea98zvY
+{'Role': 'Member', 'Org': 'BR', 'Seed': '14627', 'Name': 'Valdir Aranha'}</msg>
+<msg time="2024-07-02T17:07:16.329481" level="INFO">${result} = False</msg>
+<var>${result}</var>
+<arg>${INVALID_JWT_EXTRA_CLAIM}</arg>
+<status status="PASS" start="2024-07-02T17:07:16.329191" elapsed="0.000316"/>
+</kw>
+<kw name="Should Not Be True" owner="BuiltIn">
+<arg>${result}</arg>
+<doc>Fails if the given condition is true.</doc>
+<status status="PASS" start="2024-07-02T17:07:16.329658" elapsed="0.000149"/>
+</kw>
+<tag>Caso3</tag>
+<status status="PASS" start="2024-07-02T17:07:16.328883" elapsed="0.001078"/>
+</test>
+<test id="s1-s1-t4" name="Caso4: Invalid JWT With Numeric Name" line="22">
+<kw name="Verify Jwt" owner="jwt_verifier">
+<msg time="2024-07-02T17:07:16.330859" level="INFO">eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiRXh0ZXJuYWwiLCJTZWVkIjoiODgwMzciLCJOYW1lIjoiTTRyaWEgT2xpdmlhIn0.6YD73XWZYQSSMDf6H0i3-kylz1-TY_Yt6h1cV2Ku-Qs
+{'Role': 'External', 'Seed': '88037', 'Name': 'M4ria Olivia'}</msg>
+<msg time="2024-07-02T17:07:16.330945" level="INFO">${result} = False</msg>
+<var>${result}</var>
+<arg>${INVALID_JWT_NUMERIC_NAME}</arg>
+<status status="PASS" start="2024-07-02T17:07:16.330624" elapsed="0.000346"/>
+</kw>
+<kw name="Should Not Be True" owner="BuiltIn">
+<arg>${result}</arg>
+<doc>Fails if the given condition is true.</doc>
+<status status="PASS" start="2024-07-02T17:07:16.331123" elapsed="0.000388"/>
+</kw>
+<tag>Caso4</tag>
+<status status="PASS" start="2024-07-02T17:07:16.330267" elapsed="0.001508"/>
+</test>
+<test id="s1-s1-t5" name="Caso5: Invalid JWT With Long Name" line="27">
+<kw name="Verify Jwt" owner="jwt_verifier">
+<msg time="2024-07-02T17:07:16.332893" level="INFO">eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiTWVtYmVyIiwiU2VlZCI6IjE0NjI3IiwiTmFtZSI6Ik1hcmNvcyBSdWl6IGFhYWFhYWFhYWEgYWFhYWFhYWFhYSBhYWFhYWFhYWFhYSBhYWFhYWFhYWFhIGFhYWFhYWFhYWEgYWFhYWFhYWFhYSBhYWFhYWFhYWFhIGFhYWFhYWFhYWEgYWFhYWFhYWFhYSBhYWFhYWFhYWFhIGFhYWFhYWFhYWEgYWFhYWFhYWFhYSBhYWFhYWFhYWFhIGFhYWFhYWFhYWEgYWFhYWFhYWFhYSBhYWFhYWFhYWFhIGFhYWFhYWFhYWEgYWFhYWFhYWFhYSBhYWFhYWFhYWFhIGFhYWFhYWFhYWEgYWFhYWFhYWFhYSBhYWFhYWFhYWFhIGFhYWFhYWFhYWEifQ.zClX-uOKKqLsqAqVMpnw-I0EnMe10udOMtITFc0EHUk
+{'Role': 'Member', 'Seed': '14627', 'Name': 'Marcos Ruiz aaaaaaaaaa aaaaaaaaaa aaaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa aaaaaaaaaa'}</msg>
+<msg time="2024-07-02T17:07:16.332992" level="INFO">${result} = False</msg>
+<var>${result}</var>
+<arg>${INVALID_JWT_LONG_NAME}</arg>
+<status status="PASS" start="2024-07-02T17:07:16.332600" elapsed="0.000418"/>
+</kw>
+<kw name="Should Not Be True" owner="BuiltIn">
+<arg>${result}</arg>
+<doc>Fails if the given condition is true.</doc>
+<status status="PASS" start="2024-07-02T17:07:16.333701" elapsed="0.000274"/>
+</kw>
+<tag>Caso5</tag>
+<status status="PASS" start="2024-07-02T17:07:16.332190" elapsed="0.001965"/>
+</test>
+<test id="s1-s1-t6" name="Caso6: Invalid JWT With Non-Prime Seed" line="32">
+<kw name="Verify Jwt" owner="jwt_verifier">
+<msg time="2024-07-02T17:07:16.335144" level="INFO">eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW4iLCJTZWVkIjoiMTQ2MjYiLCJOYW1lIjoiTWFyY29zIFJ1aXoifQ.DEmgzTbgiW0sL1BAf2gKQTRnPtnuIZHIBq1Ejzllk7w
+{'Role': 'Admin', 'Seed': '14626', 'Name': 'Marcos Ruiz'}</msg>
+<msg time="2024-07-02T17:07:16.335247" level="INFO">${result} = False</msg>
+<var>${result}</var>
+<arg>${INVALID_JWT_NON_PRIME_SEED}</arg>
+<status status="PASS" start="2024-07-02T17:07:16.334822" elapsed="0.000453"/>
+</kw>
+<kw name="Should Not Be True" owner="BuiltIn">
+<arg>${result}</arg>
+<doc>Fails if the given condition is true.</doc>
+<status status="PASS" start="2024-07-02T17:07:16.335466" elapsed="0.000178"/>
+</kw>
+<tag>Caso6</tag>
+<status status="PASS" start="2024-07-02T17:07:16.334390" elapsed="0.001420"/>
+</test>
+<test id="s1-s1-t7" name="Caso7: Invalid JWT With Invalid Role" line="37">
+<kw name="Verify Jwt" owner="jwt_verifier">
+<msg time="2024-07-02T17:07:16.341065" level="INFO">eyJhbGciOiJIUzI1NiJ9.eyJSb2xlIjoiQWRtaW5pc3RyYWRvciIsIlNlZWQiOiI3ODQxIiwiTmFtZSI6Ik1hcmNvcyBSdWl6In0.PPc15UX8ndSPsVk3HqqK3la6GYQhfDTyadUXPodfDrc
+{'Role': 'Administrador', 'Seed': '7841', 'Name': 'Marcos Ruiz'}</msg>
+<msg time="2024-07-02T17:07:16.341160" level="INFO">${result} = False</msg>
+<var>${result}</var>
+<arg>${INVALID_JWT_INVALID_ROLE}</arg>
+<status status="PASS" start="2024-07-02T17:07:16.340176" elapsed="0.001007"/>
+</kw>
+<kw name="Should Not Be True" owner="BuiltIn">
+<arg>${result}</arg>
+<doc>Fails if the given condition is true.</doc>
+<status status="PASS" start="2024-07-02T17:07:16.341395" elapsed="0.000239"/>
+</kw>
+<tag>Caso7</tag>
+<status status="PASS" start="2024-07-02T17:07:16.336024" elapsed="0.005972"/>
+</test>
+<status status="PASS" start="2024-07-02T17:07:16.288566" elapsed="0.054289"/>
+</suite>
+<status status="PASS" start="2024-07-02T17:07:16.230824" elapsed="0.112538"/>
+</suite>
+<statistics>
+<total>
+<stat pass="7" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+<stat pass="1" fail="0" skip="0">Caso1</stat>
+<stat pass="1" fail="0" skip="0">Caso2</stat>
+<stat pass="1" fail="0" skip="0">Caso3</stat>
+<stat pass="1" fail="0" skip="0">Caso4</stat>
+<stat pass="1" fail="0" skip="0">Caso5</stat>
+<stat pass="1" fail="0" skip="0">Caso6</stat>
+<stat pass="1" fail="0" skip="0">Caso7</stat>
+</tag>
+<suite>
+<stat pass="7" fail="0" skip="0" id="s1" name="Tests">Tests</stat>
+<stat pass="7" fail="0" skip="0" id="s1-s1" name="Jwt Tests">Tests.Jwt Tests</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
